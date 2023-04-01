@@ -3,33 +3,32 @@ import { useState } from "react";
 // NO ----> export default useState
 
 function Count() {
-  const [count, setCount] = useState(0);
-  const [busqueda, setBusqueda] = useState("");
-  const [characters, setCharacters] = useState(null);
+  let valorInput = "";
+  let [character, setCharacter] = useState(null);
 
-  setTimeout(() => {
-    setCharacters([{ id: 1 }, { id: 2 }]);
-  }, 5000);
-
-  function sumarUno() {
-    setCount(count + 1);
-  }
+  const search = () => {
+    fetch(`https://rickandmortyapi.com/api/character/?name=${valorInput}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setCharacter(data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={sumarUno}>SUMAR UNO</button>
-
       <input
         type="text"
-        placeholder="Buscar..."
-        value={busqueda}
+        placeholder="Buscar algo..."
         onChange={(e) => {
-          setBusqueda(e.target.value);
+          valorInput = e.target.value;
         }}
       />
+      <button type="button" onClick={search}>
+        Buscar
+      </button>
 
-      {characters ? <h1>TENGO PERSONAJES</h1> : <h1>LOADING...</h1>}
+      <div>{character ? character.results[0].name : "Loading..."}</div>
     </div>
   );
 }
