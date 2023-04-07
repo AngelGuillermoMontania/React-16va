@@ -1,0 +1,15 @@
+.darkMode {
+  background-color: rgb(42, 38, 38);
+  height: 100vh;
+  width: 100vw;
+}
+
+.ligthMode {
+  background-color: aqua;
+  height: 100vh;
+  width: 100vw;
+}
+
+.title {
+  margin: 0;
+}
