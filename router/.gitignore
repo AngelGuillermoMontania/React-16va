@@ -6,21 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+
+node_modules
 dist
 dist-ssr
-
-# Carpeta contenedora de paquetes
-node_modules
-
-# Historial de instalaciones de paquetes
-package-lock.json
-
-# VARIABLE DE ENTORNO
-.env
-
-
-
-
 *.local
 
 # Editor directories and files

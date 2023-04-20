@@ -6,8 +6,8 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBfuV1jibfEV3lqh1vJInVukI_lQNJyGos",
-  authDomain: "ecommerce-16va.firebaseapp.com",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
   projectId: "ecommerce-16va",
   storageBucket: "ecommerce-16va.appspot.com",
   messagingSenderId: "563346415287",
