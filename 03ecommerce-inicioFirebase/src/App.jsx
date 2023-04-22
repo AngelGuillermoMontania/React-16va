@@ -1,29 +1,21 @@
 import NavBar from "./components/NavBar";
 import ContainCard from "./components/ContainCard";
 import Footer from "./components/Footer";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DetailCard from "./components/DetailCard";
 
 function App() {
-  const [mode, setMode] = useState("light");
-  const toogleColorMode = () => {
-    setMode(mode === "light" ? "dark" : "light");
-  };
-  const theme = createTheme({
-    palette: {
-      mode: mode,
-    },
-  });
-
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <button onClick={() => toogleColorMode}>CAMBIAR</button>
+    <BrowserRouter>
       <NavBar />
-      <ContainCard />
+      <Routes>
+        <Route path="/" element={<ContainCard />} />
+        <Route path="/category/:nameCategory" element={<ContainCard />} />
+        <Route path="/detail/:id" element={<DetailCard />} />
+      </Routes>
       <Footer />
-    </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

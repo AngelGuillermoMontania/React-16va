@@ -1,29 +1,63 @@
 import React, { useState, useEffect } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
+import CardProduct from "./CardProduct";
+import { Grid } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 // FIREBASE
 import { db } from "../firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
-import CardProduct from "./CardProduct";
-import { Grid } from "@mui/material";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 export default function ContainCard() {
   const [products, setProducts] = useState([]);
   let [loading, setLoading] = useState(true);
 
+  const { nameCategory } = useParams();
+
   useEffect(() => {
     const items = collection(db, "Zapatos");
-    getDocs(items).then((data) => {
-      const allitems = data.docs.map((item) => {
-        return {
-          ...item.data(),
-          id: item.id,
-        };
+    if (nameCategory) {
+      const collectionFiltrada = query(
+        items,
+        where("categoria", "==", nameCategory)
+      );
+
+      /* 
+        getDocs para todos los documento
+        getDoc para un solo documento
+        addDoc para agregar un documento
+        setDoc
+        updateDoc para modificar un documento
+        deleteDoc para eliminar un documento
+      */
+
+      getDocs(collectionFiltrada).then((data) => {
+        const allitems = data.docs.map((item) => {
+          return {
+            ...item.data(),
+            id: item.id,
+          };
+        });
+        setProducts(allitems);
+        setLoading(false);
       });
-      setProducts(allitems);
-      setLoading(false);
-    });
-  }, []);
+    } else {
+      getDocs(items).then((data) => {
+        const allitems = data.docs.map((item) => {
+          return {
+            ...item.data(),
+            id: item.id,
+          };
+        });
+        setProducts(allitems);
+        setLoading(false);
+      });
+    }
+  }, [nameCategory]);
+
+  // Si el array esta vacio solo se ejecuta una vez cuando se monta
+  // Si el array tiene una dependencia se actualizara cada vez que esa dependencia cambie
+  //
 
   return (
     <Grid
@@ -34,9 +68,9 @@ export default function ContainCard() {
     >
       {products[0] &&
         products.map((product) => (
-          <Grid item>
+          <Grid item key={product.id}>
             <CardProduct
-              key={product.id}
+              id={product.id}
               marca={product.marca}
               modelo={product.modelo}
               precio={product.precio}
