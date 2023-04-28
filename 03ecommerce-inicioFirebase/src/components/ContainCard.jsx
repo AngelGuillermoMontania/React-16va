@@ -13,6 +13,7 @@ export default function ContainCard() {
   let [loading, setLoading] = useState(true);
 
   const { nameCategory } = useParams();
+  console.log(nameCategory);
 
   useEffect(() => {
     const items = collection(db, "Zapatos");
@@ -63,12 +64,11 @@ export default function ContainCard() {
     <Grid
       container
       spacing={5}
-      direction="flex-row"
       style={{ justifyContent: "space-around", padding: "50px 0" }}
     >
       {products[0] &&
         products.map((product) => (
-          <Grid item key={product.id}>
+          <Grid item xs={4} key={product.id}>
             <CardProduct
               id={product.id}
               marca={product.marca}
@@ -78,13 +78,15 @@ export default function ContainCard() {
             />
           </Grid>
         ))}
-      <PacmanLoader
-        color="#FF0000"
-        loading={loading}
-        size={75}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
+      <Grid item xs={4}>
+        <PacmanLoader
+          color="#FF0000"
+          loading={loading}
+          size={75}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </Grid>
     </Grid>
   );
 }

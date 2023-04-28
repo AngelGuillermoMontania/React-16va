@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
@@ -14,9 +16,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function Cart() {
+  const { getTotalProducts } = useContext(CartContext);
+
   return (
     <IconButton aria-label="cart">
-      <StyledBadge badgeContent={4} color="primary">
+      <StyledBadge badgeContent={getTotalProducts()} color="primary">
         <ShoppingCartIcon style={{ color: "white" }} />
       </StyledBadge>
     </IconButton>

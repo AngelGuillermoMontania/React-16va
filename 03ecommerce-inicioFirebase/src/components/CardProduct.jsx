@@ -8,33 +8,35 @@ import { Link } from "react-router-dom";
 
 export default function CardProduct({ marca, img, modelo, precio, id }) {
   return (
-    <Card sx={{ minWidth: 345 }}>
-      <Link to={`/detail/${id}`}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="200"
-            image={img}
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {marca}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {`${marca} / ${modelo}`}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {`$${precio}`}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Link>
-      <CardActions>
-        <Button size="small" color="primary">
-          Agregar al carrito
-        </Button>
-      </CardActions>
-    </Card>
+    <div>
+      <Card sx={{ minWidth: 345 }}>
+        <Link to={`/detail/${id}`}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="200"
+              image={img}
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {marca}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {`${marca} / ${modelo}`}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {`$${precio}`}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Link>
+        <CardActions>
+          <Button size="small" color="primary">
+            Agregar al carrito
+          </Button>
+        </CardActions>
+      </Card>
+    </div>
   );
 }
