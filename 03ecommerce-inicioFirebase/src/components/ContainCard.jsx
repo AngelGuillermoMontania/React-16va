@@ -13,7 +13,6 @@ export default function ContainCard() {
   let [loading, setLoading] = useState(true);
 
   const { nameCategory } = useParams();
-  console.log(nameCategory);
 
   useEffect(() => {
     const items = collection(db, "Zapatos");

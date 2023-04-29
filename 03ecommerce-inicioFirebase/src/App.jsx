@@ -5,11 +5,11 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import DetailCard from "./components/DetailCard";
 import CartContextProvider from "./context/CartContext";
-import CartDetail from "./components/CartDetail";
+import CartDetail from "./components/Cart/CartDetail";
+import CartDetailContainer from "./components/Cart/CartDetailContainer";
 
 function App() {
   const { nameCategory } = useParams();
-  console.log(nameCategory);
   return (
     <BrowserRouter>
       <CartContextProvider>
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<ContainCard />} />
           <Route path="/category/:nameCategory" element={<ContainCard />} />
           <Route path="/detail/:id" element={<DetailCard />} />
-          <Route path="/cart" element={<CartDetail />} />
+          <Route path="/cart" element={<CartDetailContainer />} />
         </Routes>
         <Footer />
       </CartContextProvider>

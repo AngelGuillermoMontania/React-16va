@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../../context/CartContext";
+import { useContext } from "react";
 
-export default function CountCart({ onAdd }) {
+export default function CountCart({ onAdd, id, stock }) {
   const [count, setCount] = useState(1);
 
+  const { controlStock } = useContext(CartContext);
+
   function sumar() {
-    setCount(count + 1);
+    if (controlStock(id, count, stock)) {
+      setCount(count + 1);
+    }
   }
 
   function restar() {

@@ -12,7 +12,7 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-import CountCart from "./CountCart";
+import CountCart from "./Cart/CountCart";
 import Swal from "sweetalert2";
 
 export default function DetailCard() {
@@ -26,7 +26,7 @@ export default function DetailCard() {
     });
   }, [id]);
 
-  const { addProductCart, cart } = useContext(CartContext);
+  const { addProductCart } = useContext(CartContext);
 
   const onAdd = (cantidad) => {
     addProductCart({
@@ -95,7 +95,11 @@ export default function DetailCard() {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <CountCart onAdd={onAdd} />
+            <CountCart
+              onAdd={onAdd}
+              id={oneProduct.id}
+              stock={oneProduct.stock}
+            />
           </CardActions>
         </Card>
       </Container>

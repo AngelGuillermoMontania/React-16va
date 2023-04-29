@@ -127,7 +127,9 @@ function NavBar() {
               </Link>
             ))}
           </Box>
-          <Cart />
+          <Link to="/cart">
+            <Cart />
+          </Link>
         </Toolbar>
       </Container>
     </AppBar>
