@@ -14,7 +14,7 @@ export default function CardProduct({ marca, img, modelo, precio, id }) {
           <CardActionArea>
             <CardMedia
               component="img"
-              height="200"
+              height="300"
               image={img}
               alt="green iguana"
             />
@@ -31,11 +31,6 @@ export default function CardProduct({ marca, img, modelo, precio, id }) {
             </CardContent>
           </CardActionArea>
         </Link>
-        <CardActions>
-          <Button size="small" color="primary">
-            Agregar al carrito
-          </Button>
-        </CardActions>
       </Card>
     </div>
   );

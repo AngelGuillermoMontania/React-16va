@@ -1,4 +1,4 @@
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, deleteDoc } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebaseConfig";
@@ -28,8 +28,16 @@ export default function DetailCard() {
 
   const { addProductCart } = useContext(CartContext);
 
+  const deleteProduct = async () => {
+    const productoAEliminar = doc(db, "Zapatos", oneProduct.id);
+    await deleteDoc(productoAEliminar);
+  };
+
+  //  CRUD  ----------    ABM
+  // post   get    put    delete
+
   const onAdd = (cantidad) => {
-    addProductCart({
+    const agregado = addProductCart({
       ...oneProduct,
       cantidad: cantidad,
     });
@@ -101,6 +109,7 @@ export default function DetailCard() {
               stock={oneProduct.stock}
             />
           </CardActions>
+          <button onClick={deleteProduct}>ELIMINAR PRODUCTO</button>
         </Card>
       </Container>
     </div>

@@ -2,9 +2,11 @@ import React, { useContext, useEffect } from "react";
 import CartDetail from "./CartDetail";
 import { CartContext } from "../../context/CartContext";
 import { Box, Button, Grid, Typography } from "@mui/material";
+import { db } from "../../firebaseConfig";
+import { getDoc } from "firebase/firestore";
 
 export default function CartDetailContainer() {
-  const { cart, getTotalPrice, clearCart } = useContext(CartContext);
+  const { cart, getTotalPrice, clearCart, buy } = useContext(CartContext);
 
   return (
     <Box
@@ -40,6 +42,9 @@ export default function CartDetailContainer() {
           </Typography>
           <Button variant="outlined" onClick={clearCart}>
             Limpiar Carrito
+          </Button>
+          <Button variant="outlined" onClick={buy}>
+            Comprar
           </Button>
         </Grid>
       </Grid>

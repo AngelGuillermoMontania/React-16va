@@ -14,6 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Cart from "./Cart";
 import { TbShoe } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+import { useEffect } from "react";
 
 const pages = ["Deportivas", "Zapatos", "Urbanas"];
 
@@ -27,6 +30,13 @@ function NavBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const { recargarCarrito, setCart } = useContext(CartContext);
+
+  useEffect(() => {
+    const carritoStorage = JSON.parse(localStorage.getItem("cart"));
+    setCart(carritoStorage);
+  }, []);
 
   return (
     <AppBar position="static" style={{ backgroundColor: "rgb(26, 32, 39)" }}>

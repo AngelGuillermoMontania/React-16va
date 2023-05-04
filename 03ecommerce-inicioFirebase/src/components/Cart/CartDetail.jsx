@@ -26,7 +26,7 @@ export default function CartDetail({
   cantidad,
   id,
 }) {
-  const { deleteProduct } = useContext(CartContext);
+  const { deleteProductCart } = useContext(CartContext);
 
   return (
     <Grid item xs={11} marginY={2}>

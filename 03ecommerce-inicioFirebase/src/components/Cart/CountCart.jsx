@@ -5,10 +5,8 @@ import { useContext } from "react";
 export default function CountCart({ onAdd, id, stock }) {
   const [count, setCount] = useState(1);
 
-  const { controlStock } = useContext(CartContext);
-
   function sumar() {
-    if (controlStock(id, count, stock)) {
+    if (stock >= count + 1) {
       setCount(count + 1);
     }
   }
