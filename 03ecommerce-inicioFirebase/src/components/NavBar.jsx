@@ -17,11 +17,19 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { useEffect } from "react";
+import ButtonLogin from "./ButtonLogin";
+import ButtonLogout from "./ButtonLogout";
+
+import { useAuth0 } from "@auth0/auth0-react";
 
 const pages = ["Deportivas", "Zapatos", "Urbanas"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+  const { isAuthenticated, user } = useAuth0();
+
+  console.log(user);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -140,6 +148,24 @@ function NavBar() {
           <Link to="/cart">
             <Cart />
           </Link>
+          {user?.email === "adaAdmin@gmail.com" ? (
+            <Typography>ADMIN</Typography>
+          ) : (
+            ""
+          )}
+
+          {isAuthenticated ? (
+            <>
+              <Avatar
+                alt="not found"
+                src={user.picture}
+                style={{ margin: "0 10px" }}
+              />{" "}
+              <ButtonLogout />
+            </>
+          ) : (
+            <ButtonLogin />
+          )}
         </Toolbar>
       </Container>
     </AppBar>

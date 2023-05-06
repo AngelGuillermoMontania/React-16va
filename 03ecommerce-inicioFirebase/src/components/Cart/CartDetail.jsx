@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import imageTest from "../../assets/img/test.jpg";
+import { Navigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -17,6 +18,8 @@ import {
 import { CartContext } from "../../context/CartContext";
 import { useContext } from "react";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 export default function CartDetail({
   marca,
   modelo,
@@ -27,6 +30,12 @@ export default function CartDetail({
   id,
 }) {
   const { deleteProductCart } = useContext(CartContext);
+
+  const { isAuthenticated } = useAuth0();
+
+  if (!isAuthenticated) {
+    Navigate({ to: "/" });
+  }
 
   return (
     <Grid item xs={11} marginY={2}>
