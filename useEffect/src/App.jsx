@@ -10,6 +10,7 @@ function App() {
   function sumar() {
     setCount(count + 1);
   }
+  // PRUEBA DE GIT CON GITHUB DESKTOP
   // Prueba 2
   // PRUEBA DE GIT VSCODE
   // CICLOS DE VIDA SON 3:
