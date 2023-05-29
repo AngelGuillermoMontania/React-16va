@@ -10,7 +10,7 @@ function App() {
   function sumar() {
     setCount(count + 1);
   }
-
+  // PRUEBA DE GIT VSCODE
   // CICLOS DE VIDA SON 3:
   //                  * Cuando se monta(renderiza) mi componente, sucede 1 sola vez
   //                  * Cuando se actualiza(re-renderiza) mi componente, sucede la cantidad de veces que cambie
